@@ -1,5 +1,5 @@
 {
-    "felhasznaloNev" : "default",
+  "default" : {
     "overlayOn" : false,
     "tematikaGombok" : [
         {
@@ -183,4 +183,5 @@
           "kotesKod": "IRKAFŰZÖTT"
         }
     ]
+  }
 }
