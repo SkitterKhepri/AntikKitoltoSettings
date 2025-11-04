@@ -1,6 +1,6 @@
 {
   "default" : {
-    "overlayOn" : false,
+    "overlayOn" : true,
     "tematikaGombok" : [
         {
             "text" : "R",
@@ -185,3 +185,4 @@
     ]
   }
 }
+
