@@ -111,78 +111,79 @@
         {
           "text": "Angol",
           "nyelvId": "0000000008",
-          "nyelvKod": "ANGOL"
+          "nyelvText": "ANGOL"
         },
         {
           "text": "Német",
           "nyelvId": "0000000002",
-          "nyelvKod": "NÉMET"
+          "nyelvText": "NÉMET"
         },
         {
           "text": "Francia",
           "nyelvId": "0000000006",
-          "nyelvKod": "FRANCIA"
+          "nyelvText": "FRANCIA"
         },
         {
           "text": "Olasz",
           "nyelvId": "0000000004",
-          "nyelvKod": "OLASZ"
+          "nyelvText": "OLASZ"
         },
         {
           "text": "Spanyol",
           "nyelvId": "0000000005",
-          "nyelvKod": "SPANYOL"
+          "nyelvText": "SPANYOL"
         },
         {
           "text": "Magyar",
           "nyelvId": "0000000001",
-          "nyelvKod": "MAGYAR"
+          "nyelvText": "MAGYAR"
         }
     ],
     "celkozonsegGombok" : [
         {
           "text": "Felnőtt",
           "celkozonsegId": "00104",
-          "celkozonsegKod": "Felnőtt"
+          "celkozonsegText": "Felnőtt"
         },
         {
           "text": "Ifjú",
           "celkozonsegId": "0010299",
-          "celkozonsegKod": "Ifjúsági-mind"
+          "celkozonsegText": "Ifjúsági-mind"
         },
         {
           "text": "Gyermek",
           "celkozonsegId": "0010199",
-          "celkozonsegKod": "Gyermek-mind"
+          "celkozonsegText": "Gyermek-mind"
         },
         {
           "text": "Ifj & Gyer",
           "celkozonsegId": "00103",
-          "celkozonsegKod": "Gyermek és ifjúsági"
+          "celkozonsegText": "Gyermek és ifjúsági"
         }
     ],
     "kotesGombok" : [
         {
           "text": "Kemény",
           "kotesId": "0000000019",
-          "kotesKod": "KEMÉNYTÁBLA"
+          "kotesText": "KEMÉNYTÁBLA"
         },
         {
           "text": "Puha",
           "kotesId": "0000000025",
-          "kotesKod": "PUHATÁBLÁS"
+          "kotesText": "PUHATÁBLÁS"
         },
         {
           "text": "Védő",
           "kotesId": "0000000008",
-          "kotesKod": "KEMÉNYTÁBLA, VÉDŐBORÍTÓ"
+          "kotesText": "KEMÉNYTÁBLA, VÉDŐBORÍTÓ"
         },
         {
           "text": "Irka",
           "kotesId": "0000000020",
-          "kotesKod": "IRKAFŰZÖTT"
+          "kotesText": "IRKAFŰZÖTT"
         }
     ]
   }
 }
+
 
