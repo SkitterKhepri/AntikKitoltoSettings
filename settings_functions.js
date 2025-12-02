@@ -39,5 +39,5 @@ function addOverlayToggleListener(){
 
 
 function saveSettings(){
-    console.log(BOOTSTRAP_CSS_HREF)
+    console.log('BOOTSTRAP_CSS_HREF')
 }
