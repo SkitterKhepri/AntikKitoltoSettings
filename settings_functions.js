@@ -33,11 +33,42 @@ function addAllListeners(){
 function addOverlayToggleListener(){
     let toggle = document.getElementById('overlaySwitch')
     toggle.addEventListener('click', () =>{
+        currentSettings.overlayOn = !currentSettings.overlayOn
+    })
+}
 
+function addSaveSettingsListener(){
+    let button = document.getElementById('mentes')
+    let visszaButton = document.getElementById('vissza')
+    button.addEventListener('click', ()=> {
+        let felhasznalonev = document.getElementById('felhasznaloNev').value
+        if(felhasznalonev){
+            visszaButton.classList.add('disabled')
+            button.classList.add('disabled')
+            beallitasProfilok.felhasznalonev = currentSettings
+            currentSettingsKey = felhasznalonev
+            GM_setValue('lastBeallitasokKey', currentSettingsKey)
+            GM_setValue('beallitasok', beallitasProfilok)
+            loadSettings()
+            let saveAlert = document.getElementById('saveAlertWrapper')
+            toggleAlert(saveAlert)
+            setTimeout(toggleAlert, 850, saveAlert)
+            visszaButton.classList.remove('disabled')
+            button.classList.remove('disabled')
+        }
     })
 }
 
 
-function saveSettings(){
+function test(){
     console.log('BOOTSTRAP_CSS_HREF')
+}
+
+function toggleAlert(alert){
+    if(alert.classList.includes('visually-hidden')){
+        alert.classList.remove('visually-hidden')
+    }
+    else{
+        alert.classList.add('visually-hidden')
+    }
 }
