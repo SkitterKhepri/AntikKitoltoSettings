@@ -37,9 +37,9 @@ function addOverlayToggleListener(){
     })
 }
 
-function addSaveSettingsListener(){
-    let button = document.getElementById('mentes')
-    let visszaButton = document.getElementById('vissza')
+function addSaveSettingsListener(frag1){
+    let button = frag1.getElementById('mentes')
+    let visszaButton = frag1.getElementById('vissza')
     button.addEventListener('click', ()=> {
         let felhasznalonev = document.getElementById('felhasznaloNev').value
         if(felhasznalonev){
