@@ -14,9 +14,50 @@
                 <label class="form-check-label" for="overlaySwitch">Overlay ki/be-kapcsolása</label>
             </div>
             <div id="beallBody">
-                <div class="mb-3">
-                    <label class="small mb-1" for="felhasznaloNev">Felhasználó Név (Ezen a néven lesznek elmentve a beállításaid)</label>
-                    <input class="form-control" id="felhasznaloNev" type="text" placeholder="Írj be egy felhasználónevet">
+                <!-- Form Row-->
+                <div class="row gx-3 mb-3">
+                    <div class="col">
+                        <label class="small mb-1" for="felhasznaloNev">Felhasználó Név (Ezen a néven lesznek elmentve a beállításaid)</label>
+                        <input class="form-control" id="felhasznaloNev" type="text" placeholder="Írj be egy felhasználónevet">
+                    </div>
+                </div>
+                <!-- Form Row-->
+                <div class="row gx-3 mb-3">
+                    <div class="col">
+                        <h5 class="collapsible">Tematika Gombok</h5>
+                        <div id="tematikaContent" class="content">
+                            <!--tematikagonbom lesznek ide hozzáadva-->
+                            <div class="row">
+                                <div class="col-1">
+                                    <span id="sorId"></span>
+                                </div>
+                                <div class="col-3">
+                                    <div class="input-group input-group-sm mb-3">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">Gomb szövege</span>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="input-group input-group-sm mb-3">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">Kitöltendő szöveg</span>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="input-group input-group-sm mb-3">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">Tematika ID-ja</span>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="form-check form-switch">
+                                        <label class="form-check-label" for="switchCheckChecked">Teljes tematika</label>
+                                        <input class="form-check-input" type="checkbox" role="switch" id="switchCheckChecked" checked>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- Form Row-->
                 <div class="row gx-3 mb-3">
@@ -76,6 +117,24 @@
         <div class="alert alert-success" id="mentesAlert" role="alert">
             Beállítások sikeresen elmentve!
         </div>
+    </div>
+</div>
+<div id="tematikaTemplate" class="row">
+    <div class="col">
+        <label class="small mb-1" for="tematikaGombText">Gomb szövege</label>
+        <input class="form-control" id="tematikaGombText" type="text">
+    </div>
+    <div class="col">
+        <label class="small mb-1" for="tematikaText">Kitöltendő szöveg</label>
+        <input class="form-control" id="tematikaText" type="text">
+    </div>
+    <div class="col">
+        <label class="small mb-1" for="tematikaId">Tematika ID-ja</label>
+        <input class="form-control" id="tematikaId" type="text">
+    </div>
+    <div class="col">
+        <label class="form-check-label" for="tematikaTeljesSwitch">Teljes tematika</label>
+        <input class="form-check-input" type="checkbox" role="switch" id="tematikaTeljesSwitch">
     </div>
 </div>
 </body>
