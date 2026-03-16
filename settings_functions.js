@@ -67,7 +67,6 @@ function addAccordionListener(settingsFrag, tipusPrefix){
     let downArrowNode = settingsFrag.getElementById(tipusPrefix + 'Down')
     let upArrowNode = settingsFrag.getElementById(tipusPrefix + 'Up')
     celElem.addEventListener('click', ()=> {
-        if(cel)
         if(celElem.dataset.expanded == 1){
             celElem.parentNode.children[1].classList.add('d-none')
             celElem.dataset.expanded = 0
