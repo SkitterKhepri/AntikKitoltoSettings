@@ -5,6 +5,7 @@ function beallitasokToggle(mainPanel, settingsFrag, booklistFrag, beallitasProfi
         booklistFrag.appendChild(mainPanel.children[1])
         //populate settings page with settings data here
         populateSettings(settingsFrag, beallitasProfilok, currentSettingsKey)
+        makeSettingsCollapsible(settingsFrag)
         mainPanel.appendChild(settingsFrag)
         mainPanel.settingsOn = true
     }
@@ -61,55 +62,149 @@ function addSaveSettingsListener(settingsFrag){
     })
 }
 
+function addAccordionListener(settingsFrag, tipusPrefix){
+    let celElem = settingsFrag.getElementById(tipusPrefix + 'Title')
+    celElem.addEventListener('click', ()=> {
+        if(celElem.dataset.expanded == 1){
+            celElem.parentNode.children[1].classList.add('d-none')
+            celElem.dataset.expanded = 0
+            settingsFrag.getElementById(tipusPrefix + 'Up').classList.add('d-none')
+            settingsFrag.getElementById(tipusPrefix + 'Down').classList.remove('d-none')
+        }
+        else if(celElem.dataset.expanded == 0){
+            celElem.parentNode.children[1].classList.remove('d-none')
+            celElem.dataset.expanded = 1
+            settingsFrag.getElementById(tipusPrefix + 'Up').classList.remove('d-none')
+            settingsFrag.getElementById(tipusPrefix + 'Down').classList.add('d-none')
+        }
+    })
+}
+
 function populateSettings(settingsFrag, beallitasProfilok, currentSettingsKey){
     let tematikaTemplate = settingsFrag.getElementById('tematikaTemplate').children[0]
+    let nyelvTemplate = settingsFrag.getElementById('nyelvTemplate').children[0]
+    let celkozonsegTemplate = settingsFrag.getElementById('celkozonsegTemplate').children[0]
+    let kotesTemplate = settingsFrag.getElementById('kotesTemplate').children[0]
+    let illusztracioTemplate = settingsFrag.getElementById('illusztracioTemplate').children[0]
     let currentSettings = beallitasProfilok[currentSettingsKey]
     populateTematikaGombok(settingsFrag, tematikaTemplate, currentSettings)
-    populateNyelvGombok()
-    populateKotesGombok()
-    populateIllusztracioGombok()
-    populateCelkozonsegGombok()
+    populateNyelvGombok(settingsFrag, nyelvTemplate, currentSettings)
+    populateCelkozonsegGombok(settingsFrag, celkozonsegTemplate, currentSettings)
+    populateKotesGombok(settingsFrag, kotesTemplate, currentSettings)
+    populateIllusztracioGombok(settingsFrag, illusztracioTemplate, currentSettings)
+}
+
+function makeSettingsCollapsible(settingsFrag){
+    addAccordionListener(settingsFrag, 'tematika')
+    addAccordionListener(settingsFrag, 'nyelv')
+    addAccordionListener(settingsFrag, 'celkozonseg')
+    addAccordionListener(settingsFrag, 'kotes')
+    addAccordionListener(settingsFrag, 'illusztracio')
 }
 
 function populateTematikaGombok(settingsFrag, tematikaTemplate, currentSettings){
-    let tematikaContainer = settingsFrag.getElementById('tematikaContainer')
+    let tematikaGombokContainer = settingsFrag.getElementById('tematikaContainer')
     let tempFrag = new DocumentFragment()
+    let sorSzám = 0
     for(tematikaGomb of currentSettings.tematikaGombok){
         //clone template
         let tematikaElem = tematikaTemplate.cloneNode(true)
         tempFrag.appendChild(tematikaElem)
+        //sor számozása
+        tempFrag.getElementById('sorId').innerText = sorSzám
         //Gomb txt
         tempFrag.getElementById('tematikaGombText').value = tematikaGomb.text
-        //kitöltött txt
+        //kitöltendő txt
         tempFrag.getElementById('tematikaText').value = tematikaGomb.tematikaText
         //teljes-e
         tempFrag.getElementById('teljesCheck').checked = tematikaGomb.teljes
         //tematika ID
         tempFrag.getElementById('tematikaId').value = tematikaGomb.tematikaId
-
-        tematikaContainer.appendChild(tempFrag)
+        sorSzám++;
     }
+    tematikaGombokContainer.appendChild(tempFrag)
 }
 
-//TODO:
-function populateNyelvGombok(){
-
+function populateNyelvGombok(settingsFrag, nyelvTemplate, currentSettings){
+    let nyelvContainer = settingsFrag.getElementById('nyelvContainer')
+    let tempFrag = new DocumentFragment()
+    let sorSzám = 0
+    for(nyelvGomb of currentSettings.nyelvGombok){
+        //clone template
+        let nyelvElem = nyelvTemplate.cloneNode(true)
+        tempFrag.appendChild(nyelvElem)
+        //sor számozása
+        tempFrag.getElementById('sorId').innerText = sorSzám
+        //Gomb txt
+        tempFrag.getElementById('nyelvGombText').value = nyelvGomb.text
+        //kitöltendő txt
+        tempFrag.getElementById('nyelvText').value = nyelvGomb.nyelvText
+        //nyelv ID
+        tempFrag.getElementById('nyelvId').value = nyelvGomb.nyelvId
+        sorSzám++;
+    }
+    nyelvContainer.appendChild(tempFrag)
 }
 
-function populateKotesGombok(){
-    
+function populateCelkozonsegGombok(settingsFrag, celkozonsegTemplate, currentSettings){
+    let celkozonsegContainer = settingsFrag.getElementById('celkozonsegContainer')
+    let tempFrag = new DocumentFragment()
+    let sorSzám = 0
+    for(celkozonsegGomb of currentSettings.celkozonsegGombok){
+        //clone template
+        let celkozonsegElem = celkozonsegTemplate.cloneNode(true)
+        tempFrag.appendChild(celkozonsegElem)
+        //sor számozása
+        tempFrag.getElementById('sorId').innerText = sorSzám
+        //Gomb txt
+        tempFrag.getElementById('celkozonsegGombText').value = celkozonsegGomb.text
+        //kitöltendő txt
+        tempFrag.getElementById('celkozonsegText').value = celkozonsegGomb.celkozonsegText
+        //célközönség ID
+        tempFrag.getElementById('celkozonsegId').value = celkozonsegGomb.celkozonsegId
+        sorSzám++;
+    }
+    celkozonsegContainer.appendChild(tempFrag)
 }
 
-function populateIllusztracioGombok(){
-    
+function populateKotesGombok(settingsFrag, kotesTemplate, currentSettings){
+    let kotesContainer = settingsFrag.getElementById('kotesContainer')
+    let tempFrag = new DocumentFragment()
+    let sorSzám = 0
+    for(kotesGomb of currentSettings.kotesGombok){
+        //clone template
+        let kotesElem = kotesTemplate.cloneNode(true)
+        tempFrag.appendChild(kotesElem)
+        //sor számozása
+        tempFrag.getElementById('sorId').innerText = sorSzám
+        //Gomb txt
+        tempFrag.getElementById('kotesGombText').value = kotesGomb.text
+        //kitöltendő txt
+        tempFrag.getElementById('kotesText').value = kotesGomb.kotesText
+        //kötés ID
+        tempFrag.getElementById('kotesId').value = kotesGomb.kotesId
+        sorSzám++;
+    }
+    kotesContainer.appendChild(tempFrag)
 }
 
-function populateCelkozonsegGombok(){
-    
-}
-
-function test(){
-    console.log('BOOTSTRAP_CSS_HREF')
+function populateIllusztracioGombok(settingsFrag, illusztracioTemplate, currentSettings){
+    let illusztracioContainer = settingsFrag.getElementById('illusztracioContainer')
+    let tempFrag = new DocumentFragment()
+    let sorSzám = 0
+    for(illusztracioGomb of currentSettings.illusztracioGombok){
+        //clone template
+        let illusztracioElem = illusztracioTemplate.cloneNode(true)
+        tempFrag.appendChild(illusztracioElem)
+        //sor számozása
+        tempFrag.getElementById('sorId').innerText = sorSzám
+        //Gomb txt
+        tempFrag.getElementById('illusztracioGombText').value = illusztracioGomb.text
+        //kitöltendő txt
+        tempFrag.getElementById('illusztracioText').value = illusztracioGomb.illusztracioText
+        sorSzám++;
+    }
+    illusztracioContainer.appendChild(tempFrag)
 }
 
 function toggleAlert(alert){
@@ -120,3 +215,10 @@ function toggleAlert(alert){
         alert.classList.add('visually-hidden')
     }
 }
+
+//----------Testing--------------
+
+
+document.addEventListener("DOMContentLoaded", (event) => {
+  makeSettingsCollapsible(document)
+});

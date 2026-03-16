@@ -1,6 +1,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" crossOrigin="anonymous">
+        <script src="settings_functions.js"></script>
     </head>
 <body>
 <div class="card mb-4">
@@ -24,38 +25,124 @@
                 <!-- Form Row-->
                 <div class="row gx-3 mb-3">
                     <div class="col">
-                        <h5 class="collapsible">Tematika Gombok</h5>
-                        <div id="tematikaContainer" class="content">
-                            <!--tematikagombok lesznek ide hozzáadva-->
+                        <h5 id="tematikaTitle" data-expanded="0" class="position-relative">
+                            <div class="ms-auto" style="user-select: none;">
+                                Tematika Gombok
+                                <svg xmlns="http://www.w3.org/2000/svg" id="tematikaDown" width="16" height="16" fill="currentColor" class="bi bi-arrow-down position-absolute top-0 end-0" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1"/>
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" id="tematikaUp" width="16" height="16" fill="currentColor" class="bi bi-arrow-up d-none position-absolute top-0 end-0" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/>
+                                </svg>
+                            </div>
+                        </h5>
+                        <div id="tematikaContainer" class="content d-none">
+                            <!--tematika gombok lesznek ide hozzáadva-->
                             <div class="row">
                                 <div class="col-1">
                                     <span id="sorId"></span>
                                 </div>
                                 <div class="col-3">
                                     <div class="input-group input-group-sm mb-3">
-                                        <span class="input-group-text" id="inputGroup-sizing-sm">Gomb szövege</span>
-                                        <input type="text" class="form-control">
+                                        <span class="input-group-text">Gomb szövege</span>
+                                        <input type="text" id="tematikaGombText" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <div class="input-group input-group-sm mb-3">
-                                        <span class="input-group-text" id="inputGroup-sizing-sm">Kitöltendő szöveg</span>
-                                        <input type="text" class="form-control">
+                                        <span class="input-group-text">Kitöltendő szöveg</span>
+                                        <input type="text" id="tematikaText" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-2">
                                     <div class="form-check form-switch pt-1">
-                                        <label class="form-check-label" for="switchCheckChecked">Teljes tematika</label>
-                                        <input class="form-check-input" type="checkbox" role="switch" id="switchCheckChecked" checked>
+                                        <label class="form-check-label" for="teljesCheck">Teljes tematika</label>
+                                        <input class="form-check-input" type="checkbox" role="switch" id="teljesCheck" checked>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="input-group input-group-sm mb-3">
-                                        <span class="input-group-text" id="inputGroup-sizing-sm">Tematika ID-ja</span>
-                                        <input type="text" class="form-control">
+                                        <span class="input-group-text">Tematika ID-ja</span>
+                                        <input type="text" id="tematikaId" class="form-control">
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Form Row-->
+                <div class="row gx-3 mb-3">
+                    <div class="col">
+                        <h5 id="nyelvTitle" data-expanded="0" class="position-relative">
+                            <div class="ms-auto" style="user-select: none;">
+                                Nyelv Gombok
+                                <svg xmlns="http://www.w3.org/2000/svg" id="nyelvDown" width="16" height="16" fill="currentColor" class="bi bi-arrow-down position-absolute top-0 end-0" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1"/>
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" id="nyelvUp" width="16" height="16" fill="currentColor" class="bi bi-arrow-up d-none position-absolute top-0 end-0" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/>
+                                </svg>
+                            </div>
+                        </h5>
+                        <div id="nyelvContainer" class="content">
+                            <!--nyelv gombok lesznek ide hozzáadva-->
+                        </div>
+                    </div>
+                </div>
+                <!-- Form Row-->
+                <div class="row gx-3 mb-3">
+                    <div class="col">
+                        <h5 id="celkozonsegTitle" data-expanded="0" class="position-relative">
+                            <div class="ms-auto" style="user-select: none;">
+                                Célközönség Gombok
+                                <svg xmlns="http://www.w3.org/2000/svg" id="celkozonsegDown" width="16" height="16" fill="currentColor" class="bi bi-arrow-down position-absolute top-0 end-0" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1"/>
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" id="celkozonsegUp" width="16" height="16" fill="currentColor" class="bi bi-arrow-up d-none position-absolute top-0 end-0" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/>
+                                </svg>
+                            </div>
+                        </h5>
+                        <div id="celkozonsegContainer" class="content">
+                            <!--célközönség gombok lesznek ide hozzáadva-->
+                        </div>
+                    </div>
+                </div>
+                <!-- Form Row-->
+                <div class="row gx-3 mb-3">
+                    <div class="col">
+                        <h5 id="kotesTitle" data-expanded="0" class="position-relative">
+                            <div class="ms-auto" style="user-select: none;">
+                                Kötés Gombok
+                                <svg xmlns="http://www.w3.org/2000/svg" id="kotesDown" width="16" height="16" fill="currentColor" class="bi bi-arrow-down position-absolute top-0 end-0" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1"/>
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" id="kotesUp" width="16" height="16" fill="currentColor" class="bi bi-arrow-up d-none position-absolute top-0 end-0" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/>
+                                </svg>
+                            </div>
+                        </h5>
+                        <div id="kotesContainer" class="content">
+                            <!--kötés gombok lesznek ide hozzáadva-->
+                        </div>
+                    </div>
+                </div>
+                <!-- Form Row-->
+                <div class="row gx-3 mb-3">
+                    <div class="col">
+                        <h5 id="illusztracioTitle" data-expanded="0" class="position-relative">
+                            <div class="ms-auto" style="user-select: none;">
+                                Illusztráció Gombok
+                                <svg xmlns="http://www.w3.org/2000/svg" id="illusztracioDown" width="16" height="16" fill="currentColor" class="bi bi-arrow-down position-absolute top-0 end-0" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1"/>
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" id="illusztracioUp" width="16" height="16" fill="currentColor" class="bi bi-arrow-up d-none position-absolute top-0 end-0" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/>
+                                </svg>
+                            </div>
+                        </h5>
+                        <div id="illusztracioContainer" class="content">
+                            <!--illusztráció gombok lesznek ide hozzáadva-->
                         </div>
                     </div>
                 </div>
@@ -146,6 +233,100 @@
             <div class="input-group input-group-sm mb-3">
                 <span class="input-group-text">Tematika ID-ja</span>
                 <input type="text" id="tematikaId" class="form-control">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="nyelvTemplate" style="visibility: hidden;">
+    <div class="row">
+        <div class="col-1">
+            <span id="sorId"></span>
+        </div>
+        <div class="col-3">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">Gomb szövege</span>
+                <input type="text" id="nyelvGombText" class="form-control">
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">Kitöltendő szöveg</span>
+                <input type="text" id="nyelvText" class="form-control">
+            </div>
+        </div>
+        <div class="col">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">Nyelv ID-ja</span>
+                <input type="text" id="nyelvId" class="form-control">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="celkozonsegTemplate" style="visibility: hidden;">
+    <div class="row">
+        <div class="col-1">
+            <span id="sorId"></span>
+        </div>
+        <div class="col-3">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">Gomb szövege</span>
+                <input type="text" id="celkozonsegGombText" class="form-control">
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">Kitöltendő szöveg</span>
+                <input type="text" id="celkozonsegText" class="form-control">
+            </div>
+        </div>
+        <div class="col">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">Célközönség ID-ja</span>
+                <input type="text" id="celkozonsegId" class="form-control">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="kotesTemplate" style="visibility: hidden;">
+    <div class="row">
+        <div class="col-1">
+            <span id="sorId"></span>
+        </div>
+        <div class="col-3">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">Gomb szövege</span>
+                <input type="text" id="kotesGombText" class="form-control">
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">Kitöltendő szöveg</span>
+                <input type="text" id="kotesText" class="form-control">
+            </div>
+        </div>
+        <div class="col">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">Kötés ID-ja</span>
+                <input type="text" id="kotesId" class="form-control">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="illusztracioTemplate" style="visibility: hidden;">
+    <div class="row">
+        <div class="col-1">
+            <span id="sorId"></span>
+        </div>
+        <div class="col-3">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">Gomb szövege:</span>
+                <input type="text" id="illusztracioGombText" class="form-control">
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">Illusztráció szöveg:</span>
+                <input type="text" id="illusztracioText" class="form-control">
             </div>
         </div>
     </div>
