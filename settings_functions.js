@@ -64,18 +64,21 @@ function addSaveSettingsListener(settingsFrag){
 
 function addAccordionListener(settingsFrag, tipusPrefix){
     let celElem = settingsFrag.getElementById(tipusPrefix + 'Title')
+    let downArrowNode = settingsFrag.getElementById(tipusPrefix + 'Down')
+    let upArrowNode = settingsFrag.getElementById(tipusPrefix + 'Up')
     celElem.addEventListener('click', ()=> {
+        if(cel)
         if(celElem.dataset.expanded == 1){
             celElem.parentNode.children[1].classList.add('d-none')
             celElem.dataset.expanded = 0
-            settingsFrag.getElementById(tipusPrefix + 'Up').classList.add('d-none')
-            settingsFrag.getElementById(tipusPrefix + 'Down').classList.remove('d-none')
+            upArrowNode.classList.add('d-none')
+            downArrowNode.classList.remove('d-none')
         }
         else if(celElem.dataset.expanded == 0){
             celElem.parentNode.children[1].classList.remove('d-none')
             celElem.dataset.expanded = 1
-            settingsFrag.getElementById(tipusPrefix + 'Up').classList.remove('d-none')
-            settingsFrag.getElementById(tipusPrefix + 'Down').classList.add('d-none')
+            upArrowNode.classList.remove('d-none')
+            downArrowNode.classList.add('d-none')
         }
     })
 }
@@ -105,7 +108,7 @@ function makeSettingsCollapsible(settingsFrag){
 function populateTematikaGombok(settingsFrag, tematikaTemplate, currentSettings){
     let tematikaGombokContainer = settingsFrag.getElementById('tematikaContainer')
     let tempFrag = new DocumentFragment()
-    let sorSzám = 0
+    let sorSzám = 1
     for(tematikaGomb of currentSettings.tematikaGombok){
         //clone template
         let tematikaElem = tematikaTemplate.cloneNode(true)
@@ -120,15 +123,15 @@ function populateTematikaGombok(settingsFrag, tematikaTemplate, currentSettings)
         tempFrag.getElementById('teljesCheck').checked = tematikaGomb.teljes
         //tematika ID
         tempFrag.getElementById('tematikaId').value = tematikaGomb.tematikaId
+        tematikaGombokContainer.appendChild(tempFrag)
         sorSzám++;
     }
-    tematikaGombokContainer.appendChild(tempFrag)
 }
 
 function populateNyelvGombok(settingsFrag, nyelvTemplate, currentSettings){
     let nyelvContainer = settingsFrag.getElementById('nyelvContainer')
     let tempFrag = new DocumentFragment()
-    let sorSzám = 0
+    let sorSzám = 1
     for(nyelvGomb of currentSettings.nyelvGombok){
         //clone template
         let nyelvElem = nyelvTemplate.cloneNode(true)
@@ -141,15 +144,15 @@ function populateNyelvGombok(settingsFrag, nyelvTemplate, currentSettings){
         tempFrag.getElementById('nyelvText').value = nyelvGomb.nyelvText
         //nyelv ID
         tempFrag.getElementById('nyelvId').value = nyelvGomb.nyelvId
+        nyelvContainer.appendChild(tempFrag)
         sorSzám++;
     }
-    nyelvContainer.appendChild(tempFrag)
 }
 
 function populateCelkozonsegGombok(settingsFrag, celkozonsegTemplate, currentSettings){
     let celkozonsegContainer = settingsFrag.getElementById('celkozonsegContainer')
     let tempFrag = new DocumentFragment()
-    let sorSzám = 0
+    let sorSzám = 1
     for(celkozonsegGomb of currentSettings.celkozonsegGombok){
         //clone template
         let celkozonsegElem = celkozonsegTemplate.cloneNode(true)
@@ -162,15 +165,15 @@ function populateCelkozonsegGombok(settingsFrag, celkozonsegTemplate, currentSet
         tempFrag.getElementById('celkozonsegText').value = celkozonsegGomb.celkozonsegText
         //célközönség ID
         tempFrag.getElementById('celkozonsegId').value = celkozonsegGomb.celkozonsegId
+        celkozonsegContainer.appendChild(tempFrag)
         sorSzám++;
     }
-    celkozonsegContainer.appendChild(tempFrag)
 }
 
 function populateKotesGombok(settingsFrag, kotesTemplate, currentSettings){
     let kotesContainer = settingsFrag.getElementById('kotesContainer')
     let tempFrag = new DocumentFragment()
-    let sorSzám = 0
+    let sorSzám = 1
     for(kotesGomb of currentSettings.kotesGombok){
         //clone template
         let kotesElem = kotesTemplate.cloneNode(true)
@@ -183,15 +186,15 @@ function populateKotesGombok(settingsFrag, kotesTemplate, currentSettings){
         tempFrag.getElementById('kotesText').value = kotesGomb.kotesText
         //kötés ID
         tempFrag.getElementById('kotesId').value = kotesGomb.kotesId
+        kotesContainer.appendChild(tempFrag)
         sorSzám++;
     }
-    kotesContainer.appendChild(tempFrag)
 }
 
 function populateIllusztracioGombok(settingsFrag, illusztracioTemplate, currentSettings){
     let illusztracioContainer = settingsFrag.getElementById('illusztracioContainer')
     let tempFrag = new DocumentFragment()
-    let sorSzám = 0
+    let sorSzám = 1
     for(illusztracioGomb of currentSettings.illusztracioGombok){
         //clone template
         let illusztracioElem = illusztracioTemplate.cloneNode(true)
@@ -202,9 +205,9 @@ function populateIllusztracioGombok(settingsFrag, illusztracioTemplate, currentS
         tempFrag.getElementById('illusztracioGombText').value = illusztracioGomb.text
         //kitöltendő txt
         tempFrag.getElementById('illusztracioText').value = illusztracioGomb.illusztracioText
+        illusztracioContainer.appendChild(tempFrag)
         sorSzám++;
     }
-    illusztracioContainer.appendChild(tempFrag)
 }
 
 function toggleAlert(alert){
