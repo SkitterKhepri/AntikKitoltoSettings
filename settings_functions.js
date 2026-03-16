@@ -219,6 +219,6 @@ function toggleAlert(alert){
 //----------Testing--------------
 
 
-document.addEventListener("DOMContentLoaded", (event) => {
-  makeSettingsCollapsible(document)
-});
+// document.addEventListener("DOMContentLoaded", (event) => {
+//   makeSettingsCollapsible(document)
+// });
