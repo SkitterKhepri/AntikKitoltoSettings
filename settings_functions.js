@@ -66,20 +66,23 @@ function addAccordionListener(settingsFrag, tipusPrefix){
     let celElem = settingsFrag.getElementById(tipusPrefix + 'Title')
     let downArrowNode = settingsFrag.getElementById(tipusPrefix + 'Down')
     let upArrowNode = settingsFrag.getElementById(tipusPrefix + 'Up')
-    celElem.addEventListener('click', ()=> {
-        if(celElem.dataset.expanded == 1){
-            celElem.parentNode.children[1].classList.add('d-none')
-            celElem.dataset.expanded = 0
-            upArrowNode.classList.add('d-none')
-            downArrowNode.classList.remove('d-none')
-        }
-        else if(celElem.dataset.expanded == 0){
-            celElem.parentNode.children[1].classList.remove('d-none')
-            celElem.dataset.expanded = 1
-            upArrowNode.classList.remove('d-none')
-            downArrowNode.classList.add('d-none')
-        }
-    })
+    if(celElem.dataset.listening == 0){
+        celElem.addEventListener('click', ()=> {
+            if(celElem.dataset.expanded == 1){
+                celElem.parentNode.children[1].classList.add('d-none')
+                celElem.dataset.expanded = 0
+                upArrowNode.classList.add('d-none')
+                downArrowNode.classList.remove('d-none')
+            }
+            else if(celElem.dataset.expanded == 0){
+                celElem.parentNode.children[1].classList.remove('d-none')
+                celElem.dataset.expanded = 1
+                upArrowNode.classList.remove('d-none')
+                downArrowNode.classList.add('d-none')
+            }
+        })
+        celElem.dataset.listening = 1
+    }
 }
 
 function populateSettings(settingsFrag, beallitasProfilok, currentSettingsKey){
@@ -88,7 +91,9 @@ function populateSettings(settingsFrag, beallitasProfilok, currentSettingsKey){
     let celkozonsegTemplate = settingsFrag.getElementById('celkozonsegTemplate').children[0]
     let kotesTemplate = settingsFrag.getElementById('kotesTemplate').children[0]
     let illusztracioTemplate = settingsFrag.getElementById('illusztracioTemplate').children[0]
-    let currentSettings = beallitasProfilok[currentSettingsKey]
+    //TEST!! TODO uncomment and delete
+    // let currentSettings = beallitasProfilok[currentSettingsKey]
+    let currentSettings = settings
     populateTematikaGombok(settingsFrag, tematikaTemplate, currentSettings)
     populateNyelvGombok(settingsFrag, nyelvTemplate, currentSettings)
     populateCelkozonsegGombok(settingsFrag, celkozonsegTemplate, currentSettings)
@@ -222,5 +227,6 @@ function toggleAlert(alert){
 
 
 // document.addEventListener("DOMContentLoaded", (event) => {
-//   makeSettingsCollapsible(document)
+//     populateSettings(document, {}, {})
+//     makeSettingsCollapsible(document)
 // });
