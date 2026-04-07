@@ -33,6 +33,8 @@ function addAllListeners(){
 
 }
 
+//TODO add field(s)(new row) to be able to add new buttons
+
 function addOverlayToggleListener(){
     let toggle = document.getElementById('overlaySwitch')
     toggle.addEventListener('click', () =>{
@@ -94,6 +96,7 @@ function populateSettings(settingsFrag, beallitasProfilok, currentSettingsKey){
     //TEST!! TODO uncomment and delete
     let currentSettings = settings
     // let currentSettings = beallitasProfilok[currentSettingsKey]
+    populateUsername(settingsFrag, currentSettingsKey)
     populateTematikaGombok(settingsFrag, tematikaTemplate, currentSettings)
     populateNyelvGombok(settingsFrag, nyelvTemplate, currentSettings)
     populateCelkozonsegGombok(settingsFrag, celkozonsegTemplate, currentSettings)
@@ -110,7 +113,8 @@ function makeSettingsCollapsible(settingsFrag){
 }
 
 function populateTematikaGombok(settingsFrag, tematikaTemplate, currentSettings){
-    let tematikaGombokContainer = settingsFrag.getElementById('tematikaContainer')
+    let tematikaContainer = settingsFrag.getElementById('tematikaContainer')
+    tematikaContainer.innerHTML = ''
     let tempFrag = new DocumentFragment()
     let sorSzam = 1
     for(tematikaGomb of currentSettings.tematikaGombok){
@@ -118,35 +122,26 @@ function populateTematikaGombok(settingsFrag, tematikaTemplate, currentSettings)
         let tematikaElem = tematikaTemplate.cloneNode(true)
         let idSzam = sorSzam-1
         tempFrag.appendChild(tematikaElem)
+        let torlesGomb = tempFrag.querySelector("button[name='torles']")
         //sor számozása
         tempFrag.getElementById('sorId').innerText = sorSzam
         //Gomb txt
-        tempFrag.getElementById('tematikaGombText').value = tematikaGomb.text
-        tempFrag.getElementById('tematikaGombText').addEventListener('input', (e)=>{
-            currentSettings.tematikaGombok[idSzam].text = e.currentTarget.value
-        })
+        addFieldBindings(tempFrag.getElementById('tematikaGombText'), tematikaGomb.text, currentSettings.tematikaGombok[idSzam].text)
         //kitöltendő txt
-        tempFrag.getElementById('tematikaText').value = tematikaGomb.tematikaText
-        tempFrag.getElementById('tematikaText').addEventListener('input', (e)=>{
-            currentSettings.tematikaGombok[idSzam].tematikaText = e.currentTarget.value
-        })
+        addFieldBindings(tempFrag.getElementById('tematikaText'), tematikaGomb.tematikaText, currentSettings.tematikaGombok[idSzam].tematikaText)
         //teljes-e
-        tempFrag.getElementById('teljesCheck').checked = tematikaGomb.teljes
-        tempFrag.getElementById('teljesCheck').addEventListener('input', (e)=>{
-            currentSettings.tematikaGombok[idSzam].teljes = e.currentTarget.value
-        })
+        addFieldBindings(tempFrag.getElementById('teljesCheck'), tematikaGomb.teljes, currentSettings.tematikaGombok[idSzam].teljes, true)
         //tematika ID
-        tempFrag.getElementById('tematikaId').value = tematikaGomb.tematikaId
-        tempFrag.getElementById('tematikaId').addEventListener('input', (e)=>{
-            currentSettings.tematikaGombok[idSzam].tematikaId = e.currentTarget.value
-        })
-        tematikaGombokContainer.appendChild(tempFrag)
+        addFieldBindings(tempFrag.getElementById('tematikaId'), tematikaGomb.tematikaId, currentSettings.tematikaGombok[idSzam].tematikaId)
+        addDeleteFunctionality(torlesGomb, currentSettings.tematikaGombok, idSzam, populateTematikaGombok, settingsFrag, tematikaTemplate, currentSettings)
+        tematikaContainer.appendChild(tempFrag)
         sorSzam++;
     }
 }
 
 function populateNyelvGombok(settingsFrag, nyelvTemplate, currentSettings){
     let nyelvContainer = settingsFrag.getElementById('nyelvContainer')
+    nyelvContainer.innerHTML = ''
     let tempFrag = new DocumentFragment()
     let sorSzam = 1
     for(nyelvGomb of currentSettings.nyelvGombok){
@@ -154,23 +149,16 @@ function populateNyelvGombok(settingsFrag, nyelvTemplate, currentSettings){
         let nyelvElem = nyelvTemplate.cloneNode(true)
         let idSzam = sorSzam-1
         tempFrag.appendChild(nyelvElem)
+        let torlesGomb = tempFrag.querySelector("button[name='torles']")
         //sor számozása
         tempFrag.getElementById('sorId').innerText = sorSzam
         //Gomb txt
-        tempFrag.getElementById('nyelvGombText').value = nyelvGomb.text
-        tempFrag.getElementById('nyelvGombText').addEventListener('input', (e)=>{
-            currentSettings.nyelvGombok[idSzam].text = e.currentTarget.value
-        })
+        addFieldBindings(tempFrag.getElementById('nyelvGombText'), nyelvGomb.text, currentSettings.nyelvGombok[idSzam].text)
         //kitöltendő txt
-        tempFrag.getElementById('nyelvText').value = nyelvGomb.nyelvText
-        tempFrag.getElementById('nyelvText').addEventListener('input', (e)=>{
-            currentSettings.nyelvGombok[idSzam].nyelvText = e.currentTarget.value
-        })
+        addFieldBindings(tempFrag.getElementById('nyelvText'), nyelvGomb.nyelvText, currentSettings.nyelvGombok[idSzam].nyelvText)
         //nyelv ID
-        tempFrag.getElementById('nyelvId').value = nyelvGomb.nyelvId
-        tempFrag.getElementById('nyelvId').addEventListener('input', (e)=>{
-            currentSettings.nyelvGombok[idSzam].nyelvId = e.currentTarget.value
-        })
+        addFieldBindings(tempFrag.getElementById('nyelvId'), nyelvGomb.nyelvId, currentSettings.nyelvGombok[idSzam].nyelvId)
+        addDeleteFunctionality(torlesGomb, currentSettings.nyelvGombok, idSzam, populateNyelvGombok, settingsFrag, nyelvTemplate, currentSettings)
         nyelvContainer.appendChild(tempFrag)
         sorSzam++;
     }
@@ -178,6 +166,7 @@ function populateNyelvGombok(settingsFrag, nyelvTemplate, currentSettings){
 
 function populateCelkozonsegGombok(settingsFrag, celkozonsegTemplate, currentSettings){
     let celkozonsegContainer = settingsFrag.getElementById('celkozonsegContainer')
+    celkozonsegContainer.innerHTML = ''
     let tempFrag = new DocumentFragment()
     let sorSzam = 1
     for(celkozonsegGomb of currentSettings.celkozonsegGombok){
@@ -185,23 +174,16 @@ function populateCelkozonsegGombok(settingsFrag, celkozonsegTemplate, currentSet
         let celkozonsegElem = celkozonsegTemplate.cloneNode(true)
         let idSzam = sorSzam-1
         tempFrag.appendChild(celkozonsegElem)
+        let torlesGomb = tempFrag.querySelector("button[name='torles']")
         //sor számozása
         tempFrag.getElementById('sorId').innerText = sorSzam
         //Gomb txt
-        tempFrag.getElementById('celkozonsegGombText').value = celkozonsegGomb.text
-        tempFrag.getElementById('celkozonsegGombText').addEventListener('input', (e)=>{
-            currentSettings.celkozonsegGombok[idSzam].text = e.currentTarget.value
-        })
+        addFieldBindings(tempFrag.getElementById('celkozonsegGombText'), celkozonsegGomb.text, currentSettings.celkozonsegGombok[idSzam].text)
         //kitöltendő txt
-        tempFrag.getElementById('celkozonsegText').value = celkozonsegGomb.celkozonsegText
-        tempFrag.getElementById('celkozonsegText').addEventListener('input', (e)=>{
-            currentSettings.celkozonsegGombok[idSzam].celkozonsegText = e.currentTarget.value
-        })
+        addFieldBindings(tempFrag.getElementById('celkozonsegText'), celkozonsegGomb.celkozonsegText, currentSettings.celkozonsegGombok[idSzam].celkozonsegText)
         //célközönség ID
-        tempFrag.getElementById('celkozonsegId').value = celkozonsegGomb.celkozonsegId
-        tempFrag.getElementById('celkozonsegId').addEventListener('input', (e)=>{
-            currentSettings.celkozonsegGombok[idSzam].celkozonsegId = e.currentTarget.value
-        })
+        addFieldBindings(tempFrag.getElementById('celkozonsegId'), celkozonsegGomb.celkozonsegId, currentSettings.celkozonsegGombok[idSzam].celkozonsegId)
+        addDeleteFunctionality(torlesGomb, currentSettings.celkozonsegGombok, idSzam, populateCelkozonsegGombok, settingsFrag, celkozonsegTemplate, currentSettings)
         celkozonsegContainer.appendChild(tempFrag)
         sorSzam++;
     }
@@ -209,6 +191,7 @@ function populateCelkozonsegGombok(settingsFrag, celkozonsegTemplate, currentSet
 
 function populateKotesGombok(settingsFrag, kotesTemplate, currentSettings){
     let kotesContainer = settingsFrag.getElementById('kotesContainer')
+    kotesContainer.innerHTML = ''
     let tempFrag = new DocumentFragment()
     let sorSzam = 1
     for(kotesGomb of currentSettings.kotesGombok){
@@ -216,23 +199,16 @@ function populateKotesGombok(settingsFrag, kotesTemplate, currentSettings){
         let kotesElem = kotesTemplate.cloneNode(true)
         let idSzam = sorSzam-1
         tempFrag.appendChild(kotesElem)
+        let torlesGomb = tempFrag.querySelector("button[name='torles']")
         //sor számozása
         tempFrag.getElementById('sorId').innerText = sorSzam
         //Gomb txt
-        tempFrag.getElementById('kotesGombText').value = kotesGomb.text
-        tempFrag.getElementById('nyelvGombText').addEventListener('input', (e)=>{
-            currentSettings.kotesGombok[idSzam].text = e.currentTarget.value
-        })
+        addFieldBindings(tempFrag.getElementById('kotesGombText'), kotesGomb.text, currentSettings.kotesGombok[idSzam].text)
         //kitöltendő txt
-        tempFrag.getElementById('kotesText').value = kotesGomb.kotesText
-        tempFrag.getElementById('nyelvGombText').addEventListener('input', (e)=>{
-            currentSettings.kotesGombok[idSzam].kotesText = e.currentTarget.value
-        })
+        addFieldBindings(tempFrag.getElementById('kotesText'), kotesGomb.kotesText, currentSettings.kotesGombok[idSzam].kotesText)
         //kötés ID
-        tempFrag.getElementById('kotesId').value = kotesGomb.kotesId
-        tempFrag.getElementById('nyelvGombText').addEventListener('input', (e)=>{
-            currentSettings.kotesGombok[idSzam].kotesId = e.currentTarget.value
-        })
+        addFieldBindings(tempFrag.getElementById('kotesId'), kotesGomb.kotesId, currentSettings.kotesGombok[idSzam].kotesId)
+        addDeleteFunctionality(torlesGomb, currentSettings.kotesGombok, idSzam, populateKotesGombok, settingsFrag, kotesTemplate, currentSettings)
         kotesContainer.appendChild(tempFrag)
         sorSzam++;
     }
@@ -240,6 +216,7 @@ function populateKotesGombok(settingsFrag, kotesTemplate, currentSettings){
 
 function populateIllusztracioGombok(settingsFrag, illusztracioTemplate, currentSettings){
     let illusztracioContainer = settingsFrag.getElementById('illusztracioContainer')
+    illusztracioContainer.innerHTML = ''
     let tempFrag = new DocumentFragment()
     let sorSzam = 1
     for(illusztracioGomb of currentSettings.illusztracioGombok){
@@ -247,29 +224,45 @@ function populateIllusztracioGombok(settingsFrag, illusztracioTemplate, currentS
         let illusztracioElem = illusztracioTemplate.cloneNode(true)
         let idSzam = sorSzam-1
         tempFrag.appendChild(illusztracioElem)
+        let torlesGomb = tempFrag.querySelector("button[name='torles']")
         //sor számozása
         tempFrag.getElementById('sorId').innerText = sorSzam
         //Gomb txt
-        tempFrag.getElementById('illusztracioGombText').value = illusztracioGomb.text
-        tempFrag.getElementById('illusztracioGombText').addEventListener('input', (e)=>{
-            currentSettings.illusztracioGombok[idSzam].text = e.currentTarget.value
-        })
+        addFieldBindings(tempFrag.getElementById('illusztracioGombText'), illusztracioGomb.text, currentSettings.illusztracioGombok[idSzam].text)
         //kitöltendő txt
-        tempFrag.getElementById('illusztracioText').value = illusztracioGomb.illusztracioText
-        tempFrag.getElementById('illusztracioText').addEventListener('input', (e)=>{
-            currentSettings.illusztracioGombok[idSzam].illusztracioText = e.currentTarget.value
-        })
+        addFieldBindings(tempFrag.getElementById('illusztracioText'), illusztracioGomb.illusztracioText, currentSettings.illusztracioGombok[idSzam].illusztracioText)
+        addDeleteFunctionality(torlesGomb, currentSettings.illusztracioGombok, idSzam, populateIllusztracioGombok, settingsFrag, illusztracioTemplate, currentSettings)
         illusztracioContainer.appendChild(tempFrag)
         sorSzam++;
     }
 }
 
-function fieldChangeChecker(){
+function populateUsername(settingsfrag, currentSettingsKey){
+    settingsfrag.getElementById('felhasznaloNev').value = currentSettingsKey
+}
 
+function addFieldBindings(fieldElement, buttonPropValue, feedbackTarget, isCheck = false){
+    if(!isCheck){
+        fieldElement.value = buttonPropValue
+    }
+    else{
+        fieldElement.checked = buttonPropValue
+    }
+    fieldElement.addEventListener('input', (e)=>{
+        feedbackTarget = e.currentTarget.value
+    })
+}
+
+function addDeleteFunctionality(torlesGomb, buttonList, buttonIndex, callingFunction, settingsFrag, template, currentSettings){
+    torlesGomb.addEventListener('click', ()=>{
+        buttonList.splice(buttonIndex, 1)
+        callingFunction(settingsFrag, template, currentSettings)
+        console.log(currentSettings)
+    })
 }
 
 function toggleAlert(alert){
-    if(alert.classList.includes('visually-hidden')){
+    if(alert.classList.contains('visually-hidden')){
         alert.classList.remove('visually-hidden')
     }
     else{
@@ -282,6 +275,6 @@ function toggleAlert(alert){
 
 
 document.addEventListener("DOMContentLoaded", (event) => {
-    populateSettings(document, {}, {})
+    populateSettings(document, {}, 'default')
     makeSettingsCollapsible(document)
 });
