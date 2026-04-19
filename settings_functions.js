@@ -34,6 +34,9 @@ function addAllListeners(){
 }
 
 //TODO add field(s)(new row) to be able to add new buttons
+//so. loot at getBookTematikaMenuList in network tab. thats fucked. need to filter (for unique "node" property, looks good) it probably before using it
+//otherwise do the same as main beviteli shit, dropdown, with hidden input for "node".So fucked.
+//dont forget comment at hidden input, something like "adhearing to official styleguide"
 
 function addOverlayToggleListener(){
     let toggle = document.getElementById('overlaySwitch')

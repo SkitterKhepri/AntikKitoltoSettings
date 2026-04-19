@@ -350,5 +350,40 @@
         </div>
     </div>
 </div>
+<!-- új tematika template TODO copy this for every other button. look at settings_functions.js todo for network call fuckery -->
+<div id="ujTematikaTemplate" style="visibility: visible;">
+    <div class="row bg-warning-subtle border border-warning rounded m-1 align-items-center">
+        <div class="col">
+            <span">0</span>
+        </div>
+        <div class="col-3 pt-3">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">Gomb szövege</span>
+                <input type="text" id="tematikaGombText" class="form-control">
+            </div>
+        </div>
+        <div class="col-3 pt-3">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">Kitöltendő szöveg</span>
+                <input type="text" id="tematikaText" class="form-control">
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="form-check form-switch pt-1">
+                <label class="form-check-label" for="teljesCheck">Teljes tematika</label>
+                <input class="form-check-input" type="checkbox" role="switch" id="teljesCheck" checked>
+            </div>
+        </div>
+        <div class="col-2 pt-3">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">Tematika ID-ja</span>
+                <input type="text" id="tematikaId" class="form-control">
+            </div>
+        </div>
+        <div class="col pt-3">
+            <button type="button" name="hozzaad" class="btn btn-warning mb-3">Hozzáadás</button>
+        </div>
+    </div>
+</div>
 </body>
 </html>
